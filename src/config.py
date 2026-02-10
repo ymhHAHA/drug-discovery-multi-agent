@@ -20,6 +20,10 @@ class Config:
     # 审查参数
     max_critique_rounds: int = 3
     critique_pass_score: int = 75
+    def __post_init__(self):
+		if not self.api_key:
+			self.api_key = os.getenv("DASHSCOPE_API_KEY","")
+
     
     def validate(self):
         """验证配置"""

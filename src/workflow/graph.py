@@ -1,7 +1,7 @@
 """工作流图构建"""
 from langgraph.graph import StateGraph, END
-from .state import AgentState
-from .nodes import planner_node, executor_node, critic_node, decide_next
+from src.workflow.state import AgentState
+from src.workflow.nodes import planner_node, executor_node, critic_node, decide_next
 
 def build_workflow():
     """构建工作流"""

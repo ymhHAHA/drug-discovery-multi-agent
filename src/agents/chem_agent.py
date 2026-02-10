@@ -5,8 +5,8 @@ from langchain_core.tools import tool
 @tool
 def chem_agent(targets: List[str], disease: str, context: str = "", revision_instructions: str = "") -> Dict:
     """化学信息学分析"""
-    from ..config import Config
-    from ..llm_client import LLMClient
+    from src.config import Config
+    from src.llm_client import LLMClient
     
     config = Config()
     llm = LLMClient(config.api_key, config.model)

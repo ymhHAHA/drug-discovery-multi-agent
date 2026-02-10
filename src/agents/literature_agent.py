@@ -7,8 +7,8 @@ from .base_agent import BaseAgent
 @tool
 def literature_agent(disease: str, context: str = "", revision_instructions: str = "") -> Dict:
     """文献挖掘：识别5个候选基因"""
-    from ..config import Config
-    from ..llm_client import LLMClient
+    from src.config import Config
+    from src.llm_client import LLMClient
     
     config = Config()
     llm = LLMClient(config.api_key, config.model)

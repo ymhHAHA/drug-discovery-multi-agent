@@ -5,8 +5,8 @@ from langchain_core.tools import tool
 @tool
 def bio_agent(genes: List[str], disease: str, context: str = "", revision_instructions: str = "") -> Dict:
     """生物信息学评估"""
-    from ..config import Config
-    from ..llm_client import LLMClient
+    from src.config import Config
+    from src.llm_client import LLMClient
     
     config = Config()
     llm = LLMClient(config.api_key, config.model)

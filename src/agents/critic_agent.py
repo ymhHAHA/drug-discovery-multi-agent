@@ -7,8 +7,8 @@ from langchain_core.tools import tool
 @tool
 def critic_agent(task_description: str, output: Dict, context: str) -> Dict:
     """质量审查"""
-    from ..config import Config
-    from ..llm_client import LLMClient
+    from src.config import Config
+    from src.llm_client import LLMClient
     
     config = Config()
     llm = LLMClient(config.api_key, config.model)

@@ -3,10 +3,11 @@ import json
 import re
 from datetime import datetime
 from langchain_core.messages import AIMessage, ToolMessage
-from .state import AgentState
-from ..agents import literature_agent, bio_agent, chem_agent, critic_agent
-from ..config import Config
-from ..llm_client import LLMClient
+
+from src.workflow.state import AgentState
+from src.agents import literature_agent, bio_agent, chem_agent, critic_agent
+from src.config import Config
+from src.llm_client import LLMClient
 
 def planner_node(state: AgentState) -> dict:
     """规划节点"""
@@ -185,6 +186,8 @@ def decide_next(state: AgentState) -> str:
     latest = critique_msgs[0].content
     try:
         critique_json = json.loads(re.search(r'\{.*\}', latest).group(0))
-        return "executor" if (critique_json.get("pass", False) and critique_json.get("score", 0) >= config.critique_pass_score) or state["current_critique_round"] >= config.max_critique_rounds else "critic"
+        passed = critique_json.get("pass", False) and critique_json.get("score", 0) >= config.critique_pass_score
+        max_rounds = state["current_critique_round"] >= config.max_critique_rounds
+        return "executor" if passed or max_rounds else "critic"
     except:
         return "critic"

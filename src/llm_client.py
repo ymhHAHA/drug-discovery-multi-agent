@@ -12,10 +12,16 @@ class LLMClient:
     
     def call(self, prompt: str, temperature: float = 0.5) -> str:
         """调用LLM"""
-        response = Generation.call(
-            model=self.model,
-            prompt=prompt,
-            temperature=temperature,
-            result_format='text'
-        )
-        return response.output.text.strip() if response.status_code == 200 else ""
+        try:
+            response = Generation.call(
+                model=self.model,
+                prompt=prompt,
+                temperature=temperature,
+                result_format='text'
+            )
+            if response.status_code == 200:
+                return response.output.text.strip()
+            return ""
+        except Exception as e:
+            print(f"LLM调用失败: {e}")
+            return ""
