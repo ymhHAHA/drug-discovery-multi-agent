@@ -1,4 +1,14 @@
 """工作流图构建"""
+
+import os
+import sys
+
+
+project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
+
+
 from langgraph.graph import StateGraph, END
 from src.workflow.state import AgentState
 from src.workflow.nodes import planner_node, executor_node, critic_node, decide_next

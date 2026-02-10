@@ -1,8 +1,15 @@
 """工作流节点定义"""
+import os
+import sys
 import json
 import re
 from datetime import datetime
 from langchain_core.messages import AIMessage, ToolMessage
+
+project_root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+if project_root not in sys.path:
+    sys.path.insert(0, project_root)
+
 
 from src.workflow.state import AgentState
 from src.agents import literature_agent, bio_agent, chem_agent, critic_agent
