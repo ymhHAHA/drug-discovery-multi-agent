@@ -89,7 +89,7 @@ graph TD
     Critic --> Revision
     Revision --> Specialized
     Specialized --> Report
-                    
+```                    
 ## 工作流程
 
 - **规划阶段**：Planner Agent 分析疾病特征，生成定制化执行计划
