@@ -113,7 +113,7 @@ result = run_analysis("阿尔茨海默病")
 ```text
 drug-discovery-multiagent/
 ├── src/
-│   ├── agents/              # 🤖 智能体实现
+│   ├── agents/              # 智能体实现
 │   │   ├── base_agent.py    # 基类
 │   │   ├── literature.py    # 文献挖掘
 │   │   ├── bio.py           # 生物信息
