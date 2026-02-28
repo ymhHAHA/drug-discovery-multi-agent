@@ -72,24 +72,25 @@ result = run_analysis("阿尔茨海默病")
 ````markdown
 ## 系统架构
 
-```mermaid
-graph TD
-    %% 定义节点
-    Planner[Planner Agent]
-    Executor[Executor Agent]
-    Critic[Critic Agent]
-    Specialized[Specialized Agents]
-    Revision[Revision Loop]
-    Report[Report Generation]
+## 系统架构
 
-    %% 定义层级与流向
-    Planner --> Executor
-    Executor --> Critic
-    Executor --> Specialized
-    Critic --> Revision
-    Revision --> Specialized
-    Specialized --> Report
-```                    
+```text
+┌───────────────┐   ┌───────────────┐   ┌───────────────┐
+│    Planner    │──►│   Executor    │──►│    Critic     │
+│     Agent     │   │     Agent     │   │     Agent     │
+└───────────────┘   └───────────────┘   └───────────────┘
+                           │                   │
+                           ▼                   ▼
+                    ┌───────────────┐   ┌───────────────┐
+                    │  Specialized  │◄──│   Revision    │
+                    │    Agents     │   │     Loop      │
+                    └───────────────┘   └───────────────┘
+                           │
+                           ▼
+                    ┌───────────────┐
+                    │    Report     │
+                    │  Generation   │
+                    └───────────────┘                  
 ## 工作流程
 
 - **规划阶段**：Planner Agent 分析疾病特征，生成定制化执行计划
