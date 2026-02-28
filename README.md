@@ -72,22 +72,25 @@ result = run_analysis("阿尔茨海默病")
 
 ## 系统架构
 
-```mermaid
-graph TD
-    A[Planner Agent] --> B[Executor Agent]
-    B --> C[Critic Agent]
-    B --> D[Specialized Agents]
-    C --> E[Revision Loop]
-    E --> D
-    D --> F[Report Generation]
-    
-    style A fill:#f9f9f9,stroke:#333,stroke-width:1px
-    style B fill:#f9f9f9,stroke:#333,stroke-width:1px
-    style C fill:#f9f9f9,stroke:#333,stroke-width:1px
-    style D fill:#f9f9f9,stroke:#333,stroke-width:1px
-    style E fill:#f9f9f9,stroke:#333,stroke-width:1px
-    style F fill:#f9f9f9,stroke:#333,stroke-width:1px
-```                                  
+```text
++---------------+   +---------------+   +---------------+
+|    Planner    |-->|   Executor    |-->|    Critic     |
+|     Agent     |   |     Agent     |   |     Agent     |
++---------------+   +---------------+   +---------------+
+                            |                   |
+                            v                   v
+                    +---------------+   +---------------+
+                    |  Specialized  |<--|   Revision    |
+                    |    Agents     |   |     Loop      |
+                    +---------------+   +---------------+
+                            |
+                            v
+                    +---------------+
+                    |    Report     |
+                    |  Generation   |
+                    +---------------+     
+```                    
+
 ## 工作流程
 
 - **规划阶段**：Planner Agent 分析疾病特征，生成定制化执行计划
