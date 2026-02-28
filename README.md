@@ -69,24 +69,26 @@ result = run_analysis("阿尔茨海默病")
 # 输出: 阿尔茨海默病_药物靶点发现报告_20240115_143022.md
 ```
 
+````markdown
 ## 系统架构
 
-┌─────────────┐     ┌─────────────┐     ┌─────────────┐
-│   Planner   │────▶│  Executor   │────▶│   Critic    │
-│    Agent    │     │   Agent     │     │   Agent     │
-└─────────────┘     └─────────────┘     └─────────────┘
-                           │                    │
-                           ▼                    ▼
-                    ┌─────────────┐      ┌──────────┐
-                    │ Specialized │      │ Revision │
-                    │   Agents    │◀─────│  Loop    │
-                    └─────────────┘      └──────────┘
-                           │
-                           ▼
-                    ┌─────────────┐
-                    │   Report    │
-                    │ Generation  │
-                    └─────────────┘
+```mermaid
+graph TD
+    %% 定义节点
+    Planner[Planner Agent]
+    Executor[Executor Agent]
+    Critic[Critic Agent]
+    Specialized[Specialized Agents]
+    Revision[Revision Loop]
+    Report[Report Generation]
+
+    %% 定义层级与流向
+    Planner --> Executor
+    Executor --> Critic
+    Executor --> Specialized
+    Critic --> Revision
+    Revision --> Specialized
+    Specialized --> Report
                     
 ## 工作流程
 
